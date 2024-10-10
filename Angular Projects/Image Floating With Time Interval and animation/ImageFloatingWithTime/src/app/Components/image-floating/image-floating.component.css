@@ -1,0 +1,31 @@
+.container {
+    background-image: url('/assets/Tata-Steel3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;  /* Full width */
+    height: 100vh; /* Full height of the viewport */
+    position: relative;  /* Relative position to contain absolute elements */
+    overflow: hidden;
+}
+
+.circle {
+    background-color: black;
+    position: absolute; 
+    top: 50%;  /* Center vertically in the container */
+    left: 0;  /* Start from the left */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    width: 3vw;  /* Responsive width */
+    height: 6vh;  /* Responsive height */
+    border-radius: 50%;  /* Make it a circle */
+    animation: moveHorizontal 10s linear infinite;  /* Continuous animation */
+}
+
+@keyframes moveHorizontal {
+    0% {
+        left: 0%;  /* Start from the left */
+    }
+    100% {
+        left: calc(100% - 3vw);  /* Move to the right edge minus the circle's width */
+    }
+}

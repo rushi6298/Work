@@ -1,0 +1,133 @@
+<div class="container">
+  <div style="margin-bottom: 20px;">
+    <label>Select University Address</label>
+    <dx-autocomplete  [(value)]="selectedAddress" [dataSource]="universityAdresses" displayExpr="this" valueExpr="this"
+      [minSearchLength]="1" [maxItemCount]="10"
+      
+      >
+    </dx-autocomplete>
+
+    <div class="custom-datetime-inputs">
+      <div class="custom-input-wrapper">
+        <label for="start-time">Start Time</label>
+        <input class="custom-input" type="datetime-local" id="start-time" name="Start Time" [(ngModel)]="selectedStartTime">
+      </div>
+      <div class="custom-input-wrapper">
+        <label for="end-time">End Time</label>
+        <input class="custom-input" type="datetime-local" id="end-time" name="End Time" [(ngModel)]="selectedEndTime">
+      </div>
+    </div>
+
+    <dx-button text="Search" (onClick)="onSearch($event)" stylingMode="contained">
+    </dx-button>
+  </div>
+
+  <div style="margin-bottom: 30px;">
+    <h2>Universities</h2>
+    <dx-button text="Export to PDF" icon="exportpdf" (onClick)="exportGridToPDF(universityGrid)">
+    </dx-button>
+    <dx-data-grid #universityGrid [dataSource]="universities" (onRowClick)="onUniversityRowClick($event)"
+      (onRowInserted)="saveUnivesity($event)" (onRowUpdated)="updateUniversities($event)"
+      (onRowRemoved)="deleteUniversity($event)" [showBorders]="true" [rowAlternationEnabled]="true"
+      [paging]="{ pageSize: 3 }" [pager]="{ showPageSizeSelector: true, allowedPageSizes: [3, 10], showInfo: true }">
+
+      <dxo-search-panel [visible]="true"></dxo-search-panel>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+      </dxo-editing>
+
+      <dxi-column dataField="uid" caption="University ID" [allowEditing]="false" [alignment]="'center'">
+      </dxi-column>
+      <dxi-column dataField="uname" caption="University Name" [width]="400">
+        <!-- <dxi-validation-rule type="required" message="Please enter the university name">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[A-Za-z\s]+$"
+          message="University name must contain only letters and spaces">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="uaddress" caption="University Address">
+        <!-- <dxi-validation-rule type="required" message="Please enter the university address">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[A-Za-z0-9,\\- ]+$"
+          message="University address must contain only letters, numbers, commas, and dashes">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="email" caption="University Email">
+        <!-- <dxi-validation-rule type="required" message="Please enter the university email">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+          message="Please enter a valid email address">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="phonenumber" caption="University Phone Number">
+        <!-- <dxi-validation-rule type="required" message="Please enter the university phone number">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[0-9]{10}$"
+          message="Phone number must be exactly 10 digits">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="lastUpdatedOn" caption="Last Updated" [allowEditing]="false"
+        [editorOptions]="{ disabled: true }">
+      </dxi-column>
+
+      <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+    </dx-data-grid>
+  </div>
+
+  <div>
+    <h2>College Data</h2>
+    <dx-data-grid [dataSource]="colleges" keyExpr="cid" [allowColumnReordering]="true" [showBorders]="true"
+      [allowColumnResizing]="true" [rowAlternationEnabled]="true" (onRowInserted)="saveCollege($event)"
+      (onRowUpdated)="updateCollege($event)" (onRowRemoved)="deleteCollege($event)" [paging]="{ pageSize: 3 }"
+      [pager]="{ showPageSizeSelector: true, allowedPageSizes: [3, 10], showInfo: true }">
+
+      <dxo-search-panel [visible]="true"></dxo-search-panel>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+      </dxo-editing>
+      <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+
+      <dxi-column dataField="cid" caption="CID" [width]="100" [allowEditing]="false" [alignment]="'center'">
+      </dxi-column>
+      <dxi-column dataField="cname" caption="College Name" [width]="400">
+        <!-- <dxi-validation-rule type="required" message="Please enter the college name">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[A-Za-z\s]+$"
+          message="College name must contain only letters and spaces">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="caddress" caption="College Address" [width]="100">
+        <!-- <dxi-validation-rule type="required" message="Please enter the college address">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[A-Za-z0-9,\\- ]+$"
+          message="College address must contain only letters, numbers, commas, and dashes">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="email" caption="College Email" [width]="150">
+        <!-- <dxi-validation-rule type="required" message="Please enter the college email">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+          message="Please enter a valid email address">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="phonenumber" caption="College Phone Number" [width]="130">
+        <!-- <dxi-validation-rule type="required" message="Please enter the college phone number">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[0-9]{10}$"
+          message="Phone number must be exactly 10 digits">
+        </dxi-validation-rule> -->
+      </dxi-column>
+      <dxi-column dataField="rating" caption="College Ratings" [width]="60" [lookup]="{ dataSource: allRatings }">
+        <!-- <dxi-validation-rule type="required" message="Please enter the college rating">
+        </dxi-validation-rule>
+        <dxi-validation-rule type="pattern" pattern="^[A-D]$"
+          message="College rating must be a letter from A to D">
+        </dxi-validation-rule> -->
+      </dxi-column>
+    </dx-data-grid>
+  </div>
+</div>

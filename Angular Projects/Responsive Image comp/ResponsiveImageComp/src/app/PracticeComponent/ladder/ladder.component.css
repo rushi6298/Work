@@ -1,0 +1,138 @@
+/* Container for both halves */
+.container {
+  /* position: relative; */
+  display: flex;
+  height: 100vh;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Left half styling for images */
+.left-half {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-right: 2px solid #ccc;
+  overflow-y: auto;
+}
+
+/* Right half styling for ladle details */
+.right-half {
+  /* width: 50%;
+
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  overflow-y: auto;
+  box-sizing: border-box;  */
+
+
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-left: 2px solid #ccc;
+  overflow-y: auto;
+}
+
+/* Image grid styling */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+/* Individual ladle item styling */
+.image-item {
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ladle detail panel styling */
+.right-half .element-details {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  text-align: left;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out; /* Adds a subtle fade-in effect */
+}
+
+/* Styling for the heading */
+.right-half .element-details h1 {
+  font-size: 2em;
+  color: #333;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Styling for the h2 heading */
+.right-half .element-details h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Styling for detail items */
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for detail labels */
+.detail-label {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Keyframes for fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Ensure SVG does not push content */
+.right-half svg {
+  width: 100%;
+  height: auto; /* Adjust this if needed */
+  max-width: 400px; /* Optional: Limit the width to fit content better */
+}
+
+/* Ensure element-details does not overflow */
+.right-half .element-details {
+  overflow: visible; /* Make sure content inside is not clipped */
+}
+
+/* Example media query for small screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-half, .right-half {
+    width: 100%;
+  }
+}

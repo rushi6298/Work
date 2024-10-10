@@ -1,0 +1,86 @@
+package com.example.demo.services;
+
+import java.util.List;
+
+import javax.management.RuntimeErrorException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.RequestUniversityOBJ;
+import com.example.demo.entity.University;
+import com.example.demo.repository.UniversityRepository;
+
+import jakarta.validation.Valid;
+
+@Service
+public class UniversityServiceImplementation implements universityService {
+
+	@Autowired
+	UniversityRepository urepo;
+
+	@Override
+	public List<University> getAlluniversities() {
+		// TODO Auto-generated method stub
+		return urepo.findAll();
+	}
+
+	@Override
+	public List<String> getAllUniversitiesAdresses() {
+
+		return urepo.getAllUniversitiesAdresses();
+	}
+
+	
+
+	@Override
+	public University createUniversity(@Valid University university) {
+		if (university.getUid() != null && urepo.existsById(university.getUid())) 
+		{
+			return urepo.save(university);
+			//throw new IllegalArgumentException("University ID already exist.....");
+		}
+		
+		
+
+		return urepo.save(university);
+	}
+
+	@Override
+	public void deleteUniversity(Integer uid) {
+		urepo.deleteById(uid);
+
+	}
+	
+	@Override
+	public List<University> getAllUniversitiesByCriteria(RequestUniversityOBJ req) {
+		if (req.getUid() != null && req.getUid() == 0) {
+			req.setUid(null);
+		}
+		if (req.getUaddress() != null && req.getUaddress().isEmpty()) {
+			req.setUaddress(null);
+		}
+
+		return urepo.getAllUniversitiesByCriteria(req.getUid(), req.getUaddress());
+	}
+
+	@Override
+	public Page<University> getAllUniversitiesByCriteriaWithPagination(RequestUniversityOBJ req, int page, int pageSize)
+	{
+		PageRequest pageRequest=PageRequest.of(page, pageSize);	
+		if(req.getUid()!=null && req.getUid()==0)
+		{
+			req.setUid(null);
+		}
+		if (req.getUaddress() != null && req.getUaddress().isEmpty()) {
+			req.setUaddress(null);
+		}
+		
+		return urepo.getAllUniversitiesByCriteriaWithPagination(req.getUid(), req.getUaddress(), pageRequest);
+	}
+
+	private static final String NAME_REGEX
+}

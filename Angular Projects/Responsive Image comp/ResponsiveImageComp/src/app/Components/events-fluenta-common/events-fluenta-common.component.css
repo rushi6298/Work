@@ -1,0 +1,10 @@
+::ng-deep .dx-datagrid-headers .dx-header-row .dx-datagrid-action {
+    font-weight: bold; 
+    background-color:rgba(219, 233, 253, 1);
+    color: #080707; 
+    
+}
+.dx-datagrid-header-filter {
+    width: 30px; 
+    height: 30px; 
+}

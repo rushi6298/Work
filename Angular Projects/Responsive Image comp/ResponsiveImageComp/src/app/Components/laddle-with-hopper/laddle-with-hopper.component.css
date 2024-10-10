@@ -1,0 +1,93 @@
+    .container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        /* border: 1px solid black; */
+    }
+
+    .svg-container {
+        display: flex;
+        width: auto;
+        height: auto;
+    }
+
+    .control-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 12vw; 
+        height: 18vw;
+        gap: 2%; 
+    }
+    ::ng-deep {
+        .dx-popover-wrapper {
+            .dx-popover-arrow::after, 
+            &.dx-popover-without-title .dx-popover-arrow::after {
+                background-color: blue;
+            }
+        }
+    }
+
+    .ladle-details , .life-details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+
+            label {
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            input {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    }
+
+    .pop {
+        position: relative;  
+        height: auto;
+        width: auto; 
+    }
+
+    table {
+        width: 100%; 
+        border-collapse: collapse;
+
+        tr {
+            background-color: #f2f2f2; 
+
+            &:nth-child(even) {
+                background-color: #e6e6e6;
+            }
+
+            td {
+                border: 1px solid #ccc; 
+                padding: 8px; 
+                text-align: left; 
+            }
+        }
+    }
+
+    button{
+        border: none;
+        height: auto;
+        width: auto;
+    }

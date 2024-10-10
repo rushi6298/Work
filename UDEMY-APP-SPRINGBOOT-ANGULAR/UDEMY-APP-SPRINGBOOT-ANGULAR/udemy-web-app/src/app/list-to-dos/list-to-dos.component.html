@@ -1,0 +1,31 @@
+<div class="container" style="background-color: #ffe4b5; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #4d2600; text-align: center; margin-bottom: 20px;">My To-Do List</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead style="background-color: #8b4513; color: white;">
+            <tr>
+                <th style="width: 5%;">Id</th>
+                <th style="width: 35%;">Description</th>
+                <th style="width: 15%;">Is Completed?</th>
+                <th style="width: 20%;">Date</th>
+                <th style="width: 25%; text-align: center;">Actions</th> <!-- Added Actions column -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of todos">
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.description }}</td>
+                <td>{{ todo.done ? 'Yes' : 'No' }}</td>
+                <td>{{ todo.targetDate | date: 'MMM d, yyyy' }}</td>
+                <td style="text-align: center;">
+                    <button type="button" class="btn btn-primary btn-sm">Update</button>
+                    <span style="margin: 0 10px;"></span> <!-- Adjusted spacing between buttons -->
+                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+            <tr *ngIf="todos.length === 0">
+                <td colspan="5" style="text-align: center;">No to-dos found.</td>
+            </tr>
+        </tbody>
+    </table>    
+</div>

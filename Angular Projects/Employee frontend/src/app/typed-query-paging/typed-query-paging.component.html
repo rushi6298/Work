@@ -1,0 +1,100 @@
+<div class="container my-4 custom-container">
+    <h1 class="text-center mb-4">Employee Search Component</h1>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card custom-card mb-4">
+                <div class="card-header custom-card-header">
+                    <h3 class="card-title">Search Employee</h3>
+                </div>
+                <div class="card-body custom-card-body">
+                    <form (ngSubmit)="SearchByPaging()" class="row gx-2 gy-3 align-items-end">
+                        <div class="form-group col-md-12">
+                            <label for="sname">Select Name:</label>
+                            <select id="sname" name="fname" [(ngModel)]="sname" class="form-control custom-select">
+                                <option value=''>Select name of Employee</option>
+                                <option *ngFor="let name of bname" [value]="name">{{ name }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="department">Departments:</label>
+                            <div class="form-check form-check-inline" *ngFor="let d of department">
+                                <input type="checkbox" class="form-check-input custom-checkbox" [id]="d"
+                                    [name]="'department[]'" [value]="d" (change)="onDepartmentChange($event)">
+                                <label class="form-check-label custom-checkbox-label" [for]="d">{{d}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="minSalary">Min Salary:</label>
+                            <input type="number" id="minSalary" name="minSalary" [(ngModel)]="minSalary"
+                                class="form-control custom-input" placeholder="Enter minimum salary">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="maxSalary">Max Salary:</label>
+                            <input type="number" id="maxSalary" name="maxSalary" [(ngModel)]="maxSalary"
+                                class="form-control custom-input" placeholder="Enter maximum salary">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary custom-btn">Search Employee</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card custom-card">
+                <div class="card-header custom-card-header">
+                    <h3 class="card-title custom-employee-data-title">Employee Data</h3>
+                </div>
+                <div class="card-body p-0 custom-card-body">
+                    <table class="table table-bordered m-0 custom-table">
+                        <thead class="thead-dark custom-thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th>DEPARTMENT</th>
+                           
+                                <th>SALARY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let employee of employeeDto">
+                                <td>{{employee.id}}</td>
+                                <td>{{employee.name}}</td>
+                                <td>{{employee.department}}</td>
+                                
+                                <td>{{employee.salary}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <mat-paginator [length]="totalItems"
+               [pageSize]="pageSize"
+               (page)="onPageChange($event)"
+               [pageSizeOptions]="pageSizes">
+</mat-paginator> -->
+<!-- <div class="pagination-controls mt-3">
+    <button mat-button (click)="gotoFirstPage()" [disabled]="pageNumber === 1">
+        First
+    </button>
+    <button mat-button (click)="goToPreviousPage()" [disabled]="pageNumber === 1">
+        Previous
+    </button>
+    <button mat-button (click)="goToNextPage()" [disabled]="pageNumber === totalPages">
+        Next
+    </button>
+    <button mat-button (click)="goToLastPage()" [disabled]="pageNumber === totalPages">
+        Last
+    </button>
+</div> -->
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

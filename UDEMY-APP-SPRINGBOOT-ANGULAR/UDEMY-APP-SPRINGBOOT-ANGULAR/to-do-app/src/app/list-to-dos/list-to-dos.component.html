@@ -1,0 +1,47 @@
+<div class="container">
+    <h1 class="text-center text-primary mb-4">My To Do's</h1>
+
+    <div class="alert alert-success" *ngIf="message">
+        {{message}}
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Is Completed?</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let todo of todos">
+                    <td>{{ todo.id }}</td>
+                    <td>{{ todo.username }}</td>
+                    <td>{{ todo.descriptipn }}</td> <!-- corrected typo here -->
+                    <td>{{ todo.targetDate | date: 'mediumDate' }}</td>
+                    <td>{{ todo.isDone ? 'Yes' : 'No' }}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm mr-3" (click)="updateTodo(todo.id)" title="Edit">
+                            UPDATE <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteToDo(todo.id)" title="Delete">
+                            DELETE <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="todos.length === 0">
+                    <td colspan="6" class="text-center">No todos found</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- SAVE button -->
+        <div class="text-center">
+            <button class="btn btn-success btn-sm" (click)="addTodo()" style="margin-top: 10px;">SAVE</button>
+        </div>
+    </div>
+</div>

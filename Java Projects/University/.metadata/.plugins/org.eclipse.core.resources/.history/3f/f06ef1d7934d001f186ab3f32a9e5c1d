@@ -1,0 +1,73 @@
+package com.example.demo.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.College;
+import com.example.demo.entity.RequestUniversityOBJ;
+import com.example.demo.entity.University;
+import com.example.demo.repository.CollegeRepository;
+import com.example.demo.repository.UniversityRepository;
+
+@Service
+public class CollegeServiceImplementation implements CollegeService {
+	@Autowired
+	private CollegeRepository crepo;
+	
+	@Autowired
+	private UniversityRepository urepo;
+
+	@Override
+	public List<College> getAllCollege() {
+		// TODO Auto-generated method stub
+		return crepo.findAll();
+	}
+
+	@Override
+	public List<College> getAllcollegesByCriteria(RequestUniversityOBJ req) {
+
+		if (req.getCid() != null && req.getCid() == 0) {
+			req.setCid(null);
+		}
+		if (req.getCaddress() != null && req.getCaddress().isEmpty()) {
+			req.setCaddress(null);
+		}
+		return crepo.getAllCollegesByCriteria(req.getUid(), req.getCid(), req.getCaddress());
+	}
+
+	// No More Use
+	@Override
+	public List<College> getCollegeByUid(Integer id) {
+
+		return crepo.getCollegeByUid(id);
+	}
+
+	@Override
+	public College updateCollege(College college) {
+		College existingCollege= crepo.findById(college.getCid()).orElse(null);
+		return crepo.save(college);
+	}
+	
+	 @Override
+	    public College createCollege(College college, Integer uid) {
+	        if (uid != null) {
+	            University university = urepo.findById(uid).orElse(null);
+	            if (university != null) {
+	                college.setUniversity(university);
+	            }
+	        }
+	        return crepo.save(college);
+	    }
+	 
+	 
+	 @Override
+	public void deleteCollege(Integer cid) {
+		 
+		crepo.deleteById(cid);
+		
+	}
+
+
+}

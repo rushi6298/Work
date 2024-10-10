@@ -1,0 +1,38 @@
+package com.task1.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.task1.demo.entity.Employee;
+import com.task1.demo.service.EmployeeServiceImplementation;
+
+@RestController
+public class EmployeeController 
+{
+	@Autowired
+	private EmployeeServiceImplementation ser;
+	
+	@GetMapping("/getall")
+	public List<Employee>getAll()
+	{
+	List<Employee> list=ser.getAll();
+	return list;
+	}
+	
+	@GetMapping("/getone/{id}")
+	public Employee getOne(@PathVariable Integer id)
+	{
+		return ser.getById(id);
+	}
+	
+	@GetMapping("/getone/{name}")
+	oublic Employee getOne(@PathVariable String name)
+	{
+		return ser.getByname(name);
+	}
+
+}

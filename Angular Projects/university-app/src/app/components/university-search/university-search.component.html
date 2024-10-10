@@ -1,0 +1,141 @@
+<div class="container mt-4">
+  <h1 class="mb-4 text-center text-primary">Universities</h1>
+
+  <!-- Message for no universities found -->
+  <div *ngIf="universities.length === 0" class="alert alert-info">
+    No universities found.
+  </div>
+
+  <!-- University Address Filter -->
+  <div class="mb-4">
+    <h2 class="mb-3 text-center text-secondary">University Addresses</h2>
+    <select class="form-select" name="selectedAddress" id="selectedAddress" aria-label="University Addresses"
+      [value]="selectedAddress" [(ngModel)]="selectedAddress">
+      <option value="Select University Address">Select University Address</option>
+      <option *ngFor="let address of universityAdresses" [value]="address">{{ address }}</option>
+    </select>
+    <button class="btn btn-primary mt-3" (click)="onSearch()">Search</button>
+  </div>
+
+  <!-- Universities Table -->
+  <table class="table table-bordered table-hover table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>University ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let university of universities; let i = index">
+        <tr (click)="toggleColleges(university.uid)" (mouseover)="highlightRow($event)"
+          (mouseout)="removeHighlight($event)">
+          <td>{{ university.uid }}</td>
+          <td *ngIf="!university.editMode">{{ university.uname }}</td>
+          <td *ngIf="university.editMode"><input class="form-control" [(ngModel)]="university.uname"></td>
+          <td *ngIf="!university.editMode">{{ university.uaddress }}</td>
+          <td *ngIf="university.editMode"><input class="form-control" [(ngModel)]="university.uaddress"></td>
+          <td *ngIf="!university.editMode">{{ university.email }}</td>
+          <td *ngIf="university.editMode"><input class="form-control" [(ngModel)]="university.email"></td>
+          <td *ngIf="!university.editMode">{{ university.phonenumber }}</td>
+          <td *ngIf="university.editMode"><input class="form-control" [(ngModel)]="university.phonenumber"></td>
+          <td>
+            <div class="btn-group" role="group" aria-label="University actions">
+              <button *ngIf="!university.editMode" class="btn btn-info btn-sm"
+                (click)="editUniversities(university)">Edit</button>
+              <button *ngIf="university.editMode" class="btn btn-success btn-sm"
+                (click)="updateUniversities(university)">Update</button>
+              <button *ngIf="university.editMode" class="btn btn-secondary btn-sm"
+                (click)="cancelUniversities(university)">Cancel</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteUniversity(university.uid)">Delete</button>
+              <!-- <button *ngIf="expandedUniversityId === university.uid" class="btn btn-primary btn-sm"
+                (click)="startCreatingcollege(university.uid)">Add College</button> -->
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="expandedUniversityId === university.uid">
+          <td colspan="7">
+            <!-- Colleges Table -->
+            <table class="table table-bordered table-hover table-striped college-table">
+              <thead class="table-dark">
+                <tr>
+                  <th>College ID</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let college of colleges">
+                  <td>{{ college.cid }}</td>
+                  <td *ngIf="!college.editMode">{{ college.cname }}</td>
+                  <td *ngIf="college.editMode"><input class="form-control" [(ngModel)]="college.cname"></td>
+                  <td *ngIf="!college.editMode">{{ college.caddress }}</td>
+                  <td *ngIf="college.editMode"><input class="form-control" [(ngModel)]="college.caddress"></td>
+                  <td *ngIf="!college.editMode">{{ college.email }}</td>
+                  <td *ngIf="college.editMode"><input class="form-control" [(ngModel)]="college.email"></td>
+                  <td *ngIf="!college.editMode">{{ college.phonenumber }}</td>
+                  <td *ngIf="college.editMode"><input class="form-control" [(ngModel)]="college.phonenumber"></td>
+                  <td>
+                    <div class="btn-group" role="group" aria-label="College actions">
+                      <button *ngIf="!college.editMode" class="btn btn-info btn-sm"
+                        (click)="editCollege(college)">Edit</button>
+                      <button *ngIf="college.editMode" class="btn btn-success btn-sm"
+                        (click)="updateCollege(college)">Update</button>
+                      <button *ngIf="college.editMode" class="btn btn-secondary btn-sm"
+                        (click)="cancelColleges(college)">Cancel</button>
+                      <button class="btn btn-danger btn-sm" (click)="deleteCollege(college.cid)">Delete</button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- New College Row -->
+                <tr *ngIf="isCreatingColle && selectedUniversityForNewCollege === university.uid">
+                  <td></td>
+                  <td><input class="form-control" [(ngModel)]="newCollege.cname" placeholder="Name"></td>
+                  <td><input class="form-control" [(ngModel)]="newCollege.caddress" placeholder="Address"></td>
+                  <td><input class="form-control" [(ngModel)]="newCollege.email" placeholder="Email"></td>
+                  <td><input class="form-control" [(ngModel)]="newCollege.phonenumber" placeholder="Phone"></td>
+                  <td>
+                    <div class="btn-group" role="group" aria-label="New College actions">
+                      <button class="btn btn-success btn-sm" (click)="saveCollege()">Save</button>
+                      <button class="btn btn-secondary btn-sm" (click)="cancelNewCollege()">Cancel</button>
+
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center mt-4">
+              <button class="btn btn-primary" *ngIf="!isCreatingColle"
+                (click)="startCreatingcollege(university.uid)">Add College</button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <!-- New University Row -->
+      <tr *ngIf="isCreatingUniversity">
+        <td></td>
+        <td><input class="form-control" [(ngModel)]="newUniversity.uname" placeholder="Name"></td>
+        <td><input class="form-control" [(ngModel)]="newUniversity.uaddress" placeholder="Address"></td>
+        <td><input class="form-control" [(ngModel)]="newUniversity.email" placeholder="Email"></td>
+        <td><input class="form-control" [(ngModel)]="newUniversity.phonenumber" placeholder="Phone"></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="New University actions">
+            <button class="btn btn-success btn-sm" (click)="saveUnivesity()">Save</button>
+            <button class="btn btn-secondary btn-sm" (click)="cancelNewUniversity()">Cancel</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Button to start creating a new university -->
+  <div class="text-center mt-4">
+    <button class="btn btn-primary" (click)="startCreatinguniversity()">Add New University</button>
+  </div>
+</div>

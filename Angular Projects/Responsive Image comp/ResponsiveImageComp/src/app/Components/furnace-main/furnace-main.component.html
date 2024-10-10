@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="left-half">
+    <div class="image-grid">
+      <div *ngFor="let furnace of furnaces" class="image-item" (click)="selecFurnace(furnace)">
+        
+        <!-- <app-image1 [furnace]="furnace" [ngStyle]="{ 'width': '250px', 'height': '290px' }"></app-image1> -->
+      
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="right-half"  >
+
+
+    
+    <div *ngIf="selectedFurnace" class="element-details">
+      <div>
+        <h1>Weight Chart </h1>
+      </div>
+
+      <div style="display: flex; align-items: center;">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 300px; margin-right: 15px;">
+          <span>100%</span>
+          <span>75%</span>
+          <span>50%</span>
+          <span>25%</span>
+          <span>0%</span>
+        </div>
+        <svg width="100%" height="300px">
+          <rect 
+            x="20" 
+            class="animated-rect"
+            [attr.y]="300 - (300 * getFillHeight(selectedFurnace.weight) / 100)"
+            [attr.height]="getFillHeight(selectedFurnace.weight) + '%'" 
+            fill="red"
+            width="20px" 
+            
+            style="transition: height 1s ease,y 1s ease;">
+          </rect>
+        </svg>
+      </div>
+      <div  >
+        <h2>Furnace Details</h2>
+        
+        <div class="detail-item">
+          <span class="detail-label">Furnace ID:</span> {{ selectedFurnace.furnaceId }}
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Heat ID:</span> {{ selectedFurnace.heatId }}
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Weight:</span> {{ selectedFurnace.weight }}
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Grade:</span> {{ selectedFurnace.grade }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>

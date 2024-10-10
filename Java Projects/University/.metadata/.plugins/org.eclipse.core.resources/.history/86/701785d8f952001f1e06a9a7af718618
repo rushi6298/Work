@@ -1,0 +1,73 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entity.RequestUniversityOBJ;
+import com.example.demo.entity.University;
+import com.example.demo.services.UniversityServiceImplementation;
+
+@RestController
+@CrossOrigin("*")
+public class UniversityController
+{
+	@Autowired
+	UniversityServiceImplementation uniserv;
+	
+	@GetMapping("/getAllUniversities")
+	public List<University>getAllUniversities()
+	{
+		return uniserv.getAlluniversities();
+	}
+	
+	@GetMapping("/getAllUniversitiesAdresses")
+	public List<String>getAllUniversitiesAdresses(){
+		return uniserv.getAllUniversitiesAdresses();
+	}
+	
+	
+	@PostMapping("/createAndUpdateUniversity")
+	public University createUniversity(@RequestBody University university)
+	{
+		return uniserv.createUniversity(university);
+	}
+	
+//	@PostMapping("/UpdateUniversity")
+//	public University UpdateUniversity(@RequestBody University university)
+//	{
+//		return uniserv.createUniversity(university);
+//	}
+	@DeleteMapping("/deleteUniversity/{uid}")
+	public void deleteUniversity(@PathVariable Integer uid)
+	{
+		 uniserv.deleteUniversity(uid);
+	}
+	@PostMapping("/getAllUniversitiesByCriteria")
+	public List<University>getAllUniversitiesByCriteria(@RequestBody RequestUniversityOBJ req)
+	{
+		System.out.println(req);
+		return uniserv.getAllUniversitiesByCriteria(req);
+	}
+	
+	@PostMapping("/getAllUniversitiesByCriteriaWithPagination")
+	public Page<University>getAllUniversitiesByCriteriaWithPagination(@RequestBody RequestUniversityOBJ req,
+			@RequestParam int page,
+			@RequestParam int pageSize)
+	{
+		System.out.println(req);
+		return uniserv.getAllUniversitiesByCriteriaWithPagination(req, page, pageSize);
+		
+	}
+
+
+}

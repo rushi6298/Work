@@ -1,0 +1,228 @@
+<div class="container my-4 custom-container">
+    <h1 class="text-center mb-4">Employee Search Component</h1>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card custom-card mb-4">
+                <div class="card-header custom-card-header">
+                    <h3 class="card-title">Search Employee</h3>
+                </div>
+                <div class="card-body custom-card-body">
+                    <form (ngSubmit)="SearchEmployeevehicleWothDateOfJoiningByPaging()" class="row gx-2 gy-3 align-items-end">
+                        <div class="form-group col-md-12">
+                            <label for="sname">Select Name:</label>
+                            <select id="sname" name="fname" [(ngModel)]="sname" class="form-control custom-select">
+                                <option value=''>Select name of Employee</option>
+                                <option *ngFor="let name of bname" [value]="name">{{ name }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="department">Departments:</label>
+                            <div class="form-check form-check-inline" *ngFor="let d of department">
+                                <input type="checkbox" class="form-check-input custom-checkbox" [id]="d"
+                                    [name]="'department[]'" [value]="d" (change)="onDepartmentChange($event)">
+                                <label class="form-check-label custom-checkbox-label" [for]="d">{{d}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="minSalary">Min Salary:</label>
+                            <input type="number" id="minSalary" name="minSalary" [(ngModel)]="minSalary"
+                                class="form-control custom-input" placeholder="Enter minimum salary">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="maxSalary">Max Salary:</label>
+                            <input type="number" id="maxSalary" name="maxSalary" [(ngModel)]="maxSalary"
+                                class="form-control custom-input" placeholder="Enter maximum salary">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary custom-btn">Search Employee</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card custom-card">
+                <div class="card-header custom-card-header">
+                    <h3 class="card-title custom-employee-data-title">Employee Data</h3>
+                </div>
+                <div class="card-body p-0 custom-card-body">
+                    <div class="text-left mt-4 ml-3 mb-3">
+                        <div class="btn-group" role="group" aria-label="Sort Employees">
+
+                            <button (click)="toggleId()" class="btn btn-primary">Sort by ID</button>
+                            <button (click)="toggleName()" class="btn btn-primary">Sort by Name</button>
+                            <button (click)="toggleSalary()" class="btn btn-primary">Sort by Salary</button>
+                            <button (click)="toggleDepartment()" class="btn btn-primary">Sort by Department</button>
+                        </div>
+                    </div>
+                    <table class="table table-bordered m-0 custom-table">
+                        <thead class="thead-dark custom-thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>NAME</th>
+                                <th>DEPARTMENT</th>
+                                
+                                <th>ADDRESS</th>
+                                <th>SALARY</th>
+                                <th>Vehicle ID</th>
+                                <th>Vehicle Number</th>
+                                <th>Parking Spot</th>
+                                <th>Joining date ID</th>
+                               
+                                <th>
+                                    Joining Date
+                                    <form>
+                                        <div>
+                                            <mat-form-field appearance="fill">
+                                              <mat-label style="color: white; font-weight: bold; font-size: 18px;">JOINING DATE</mat-label>
+                                              <mat-select [(value)]="selectedDateFormat" (selectionChange)="changeSelectedDateFormat($event)">
+                                                <mat-option *ngFor="let format of dateFormat" [value]="format.value">
+                                                    {{ format.viewValue }}
+                                                </mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                          </div>
+                                    </form>
+                                </th>
+                                
+                                <th *ngIf="newEmployee != null">Cancel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let employee of employeevehicleDTO">
+                                <td>{{ employee.id }}</td>
+                                <td>
+                                    <ng-container >
+                                        <span>{{ employee.name }}</span>
+                                    </ng-container>
+                                </td>
+                            
+                                <td>
+                                    <ng-container >
+                                        <span>{{ employee.department }}</span>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container>
+                                        <span>{{employee.address}}</span>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container>
+                                        <span>{{employee.salary}}</span>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container>
+                                        <span>{{employee.vehicleId}}</span>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container>
+                                        <span>{{employee.vehicleNumber}}</span>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container>
+                                        <span>{{employee.vehicleSpot}}</span>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container>
+                                        <span>{{employee.joiningID}}</span>
+                                    </ng-container>
+                                </td>
+                                <td>
+                                    <ng-container>
+                                        <span>{{employee.joiningDate | customeDate:selectedDateFormat}}</span>
+                                    </ng-container>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="total-salary-container">
+                        <h4 class="total-salary-text">
+                            Total Salary of Employees: {{total}}
+                        </h4>
+                    </div>
+                </div>
+                <div class="container my-4 p-0">
+                    <!-- Pagination Controls -->
+                    <div class="d-flex justify-content-end mt-4">
+                      <div class="form-inline mr-2">
+                      </div>
+                      <div>
+                        <button class="btn btn-primary btn-sm" (click)="goToPage(0)" [disabled]="currentPage===0">First</button>
+                        <button class="btn btn-primary btn-sm" (click)="goToPage(currentPage-1)"[disabled]="currentPage===0">Previous</button>
+
+                        <ng-container *ngFor="let pi of [].constructor(totalPages); let i=index">
+                            <button class="btn btn-primary btn-sm" (click)="goToPage(i)" [disabled]="i===currentPage">{{i+1}}</button>
+                        </ng-container>
+                        <button class="btn btn-primary btn-sm" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages - 1">Next</button>
+                        <button class="btn btn-primary btn-sm" (click)="goToPage(totalPages - 1)" [disabled]="currentPage === totalPages - 1">Last</button>
+                      </div>
+                    </div>
+                    <div class="text-center" *ngIf="searchClick">
+                        <button class="btn btn-primary" (click)="SearchExcel()">Download Data</button>
+                        <button mat-raised-button (click)="downloadPDF()">Download PDF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.custom-container {
+    max-width: 1200px;
+}
+
+.custom-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.custom-card-header {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.custom-card-body {
+    padding: 20px;
+}
+
+.custom-table th, .custom-table td {
+    text-align: center;
+}
+
+.custom-table th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.custom-btn, .custom-input, .custom-select {
+    width: 100%;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+.total-salary-container {
+    margin-top: 20px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.total-salary-text {
+    font-weight: bold;
+    color: #333;
+}
+</style>

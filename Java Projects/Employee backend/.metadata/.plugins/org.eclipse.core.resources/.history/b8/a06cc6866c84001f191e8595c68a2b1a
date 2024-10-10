@@ -1,0 +1,12 @@
+spring.application.name=Task_1
+spring.datasource.url=jdbc:mysql://localhost:3306/employee
+spring.datasource.username=ENC(nyZBEkcKAER6tsST9lWvr4hX7oAZMtH1BCo7RALqiyvJc7QytRjHnwYtPj0OCfE/)
+spring.datasource.password=ENC(nyZBEkcKAER6tsST9lWvr4hX7oAZMtH1BCo7RALqiyvJc7QytRjHnwYtPj0OCfE/)
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+
+jasypt.encryptor.password=hind
+
+spring.jpa.show-sql= true
+spring.jpa.hibernate.ddl-auto= update
+

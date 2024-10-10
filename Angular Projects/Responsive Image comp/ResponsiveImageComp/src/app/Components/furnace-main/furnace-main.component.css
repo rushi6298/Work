@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  height: 100vh;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.left-half {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-right: 2px solid #ccc;
+  overflow-y: auto;
+}
+
+.right-half {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+.image-item {
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+app-image1 {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+}
+
+.right-half .element-details {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  text-align: left;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out; /* Adds a subtle fade-in effect */
+}
+
+.right-half .element-details h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

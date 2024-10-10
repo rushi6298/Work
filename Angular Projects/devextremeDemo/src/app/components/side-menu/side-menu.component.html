@@ -1,0 +1,90 @@
+<!-- <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <button class="btn btn-custom" (click)="toggleTabList()">
+        <i class="fa fa-plus"></i> Components
+      </button>
+      <div class="navbar-brand">
+        <a href="#">UNIVERSITY DATA</a>
+      </div>
+    </nav>
+  </header>
+  
+  <div class="tab-container">
+    
+    <div class="tab-list" *ngIf="showTabList">
+      <ul>
+        <li *ngFor="let tab of availableTabs" (click)="openTab(tab)">
+          {{ tab.name }}
+        </li>
+      </ul>
+    </div>
+  
+    <div class="tabs">
+      <div class="tab-header">
+        <div *ngFor="let tab of tabs" class="tab" [ngClass]="{ active: tab.active }">
+          <span (click)="selectTab(tab)">{{ tab.name }}</span>
+          <button (click)="closeTab(tab)" class="close-btn">&times;</button>
+        </div>
+      </div>
+  
+      <div class="tab-content">
+        <ng-container *ngFor="let tab of tabs">
+            <div [ngClass]="{ 'd-none' : !tab.active }">
+            <app-university-search *ngIf="tab.component==='UniversitySearchComponent'"></app-university-search>
+            <app-devextreme-demo *ngIf="tab.component==='DevextremeDemoComponent'"></app-devextreme-demo>
+            <app-university-with-mat *ngIf="tab.component==='UniversityWithMatComponent'"></app-university-with-mat>
+            <app-university-search-withbackend-pagination *ngIf="tab.component==='UniversitySearchWithbackendPaginationComponent'"></app-university-search-withbackend-pagination>
+            <app-column-search *ngIf="tab.component==='columnSearchComponent'"></app-column-search>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+   -->
+
+
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <button class="btn btn-primary" (click)="toggleTabList()">
+      <i class="fa fa-plus">Components</i>
+    </button>
+
+    <div class="navbar-brand">UNIVERSITY DATA</div>
+  </nav>
+</header>
+
+<div class="tab-container">
+
+  <div class="tab-list" *ngIf="showTabList">
+    <ul>
+      <li *ngFor="let tab of availableTabs" (click)="openTab(tab)">
+        {{ tab.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="tabs">
+    <div class="tab-header">
+      <div *ngFor="let tab of tabs" class="tab" [ngClass]="{ active: tab.active }">
+        <span (click)="selectTab(tab)">{{ tab.name }}</span>
+        <button (click)="closeTab(tab)" class="close-btn">&times;</button>
+      </div>
+    </div>
+
+    <div class="tab-content">
+      <ng-container *ngFor="let tab of tabs">
+        <div [ngClass]="{ 'd-none' : !tab.active }">
+          <app-university-search *ngIf="tab.component==='UniversitySearchComponent'"></app-university-search>
+          <app-devextreme-demo *ngIf="tab.component==='DevextremeDemoComponent'"></app-devextreme-demo>
+          <app-university-with-mat *ngIf="tab.component==='UniversityWithMatComponent'"></app-university-with-mat>
+          <app-university-search-withbackend-pagination
+            *ngIf="tab.component==='UniversitySearchWithbackendPaginationComponent'"></app-university-search-withbackend-pagination>
+          <app-column-search *ngIf="tab.component==='columnSearchComponent'"></app-column-search>
+
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

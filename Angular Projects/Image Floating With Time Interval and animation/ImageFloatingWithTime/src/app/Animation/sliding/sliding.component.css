@@ -1,0 +1,51 @@
+.slick-prev::before,
+.slick-next::before {
+    color: black;
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide {
+    display: inline-block;
+    padding: 10px;
+}
+
+.image-container {
+    position: relative;
+}
+
+.img-style {
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px;
+    width: 250px;
+    display: block;
+    border: 0cap;
+    border-color: red;
+}
+
+.image-index {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+}
+
+.image-container:hover .image-index {
+    display: block; /* Show index on hover */
+}
+
+@media (max-width: 600px) {
+    .img-style {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

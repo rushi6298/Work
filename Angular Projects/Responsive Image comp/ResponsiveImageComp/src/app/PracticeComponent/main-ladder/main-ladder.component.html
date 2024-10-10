@@ -1,0 +1,274 @@
+<div class="container">
+  <div class="svg-container">
+    <svg width="129" height="129" viewBox="0 0 129 129" fill="none" xmlns="http://www.w3.org/2000/svg">
+      
+      <defs>
+        
+
+
+        <mask [attr.id]="'mask' + laddels.ladleId ">
+          <rect id="maskRect" x="0" [attr.y]="(100- percent) + '%'" width="100%" [attr.height]="percent + '%'"
+            fill="white">
+
+          </rect>
+
+        </mask>
+      </defs>
+
+
+      <path d="M8.93945 0.484375H119.972L106.641 118.428H22.9873L8.93945 0.484375Z" fill="#808080" />
+      <path
+        d="M29.5407 106.777L15.8452 1.36245H113.156L100.02 106.775C99.9228 106.789 99.8155 106.805 99.6983 106.822C99.0643 106.914 98.142 107.047 96.9905 107.205C94.6874 107.523 91.4684 107.946 87.806 108.369C80.4715 109.215 71.3945 110.055 64.3334 110.048C57.3365 110.04 48.484 109.2 41.359 108.358C37.8012 107.937 34.6827 107.517 32.454 107.201C31.3397 107.044 30.4481 106.913 29.8354 106.821C29.7286 106.805 29.6302 106.79 29.5407 106.777Z"
+        fill="#EEEEEE" stroke="#4E4E4E" stroke-width="1.75615" />
+
+
+      <path
+        d="M99.5619 106.607L111.365 8.83594C111.365 8.83594 82.8315 11.699 64.497 11.699C46.1625 11.699 17.6289 8.83594 17.6289 8.83594L29.8896 106.607C29.8896 106.607 50.6563 109.982 64.2912 109.997C78.0502 110.012 99.5619 106.607 99.5619 106.607Z"
+        [attr.fill]="calculateColorIntensity(laddels.temperature)" [attr.mask]="'url(#mask' + laddels.ladleId + ')'" />
+
+      <path d="M58.3275 117.826L61.3701 110.527H66.7789L69.7472 117.826H58.3275Z" fill="red" stroke="#4E4E4E"
+        stroke-width="1.05369" />
+      <rect x="27.8398" y="112.781" width="12.0651" height="15.7774" fill="#808080" />
+      <path d="M6.66406 21.7031H15.0168L17.801 53.4786H6.66406V21.7031Z" fill="#808080" />
+      <rect x="-0.00390625" y="31.6016" width="15.0181" height="11.9625" fill="#808080" />
+      <rect x="113.98" y="31.6016" width="15.0181" height="11.9625" fill="#808080" />
+      <path d="M113.812 21.7031H122.164V53.4786H111.027L113.812 21.7031Z" fill="#808080" />
+      <rect x="89.0918" y="112.781" width="12.0651" height="15.7774" fill="#808080" />
+
+      <text x="50%" y="25" font-size="18" text-anchor="middle" fill="black" font-weight="bold">{{ laddels.ladleId
+        }}</text>
+      <text x="50%" y="40" font-size="13" text-anchor="middle" fill="black" font-weight="bold">{{ laddels.heatId
+        }}</text>
+      <text x="50%" y="55" font-size="13" text-anchor="middle" fill="black" font-weight="bold">{{ laddels.location
+        }}</text>
+      <text x="50%" y="70" font-size="13" text-anchor="middle" fill="black" font-weight="bold">{{ laddels.weight
+        }}</text>
+      <text x="50%" y="82" font-size="13" text-anchor="middle" fill="black" font-weight="bold">{{ laddels.temperature
+        }}</text>
+      <!-- <text x="33%" y="82" font-size="10" text-anchor="middle" fill="black" font-weight="bold">{{ laddels.lifeDetails.avdCycleTime }}</text> -->
+    </svg>
+  </div>
+
+
+
+
+
+
+  <div class="control-buttons">
+    <dx-button icon="../../assets/Frame1321314127.svg" (mouseleave)="hidePopup()"
+      (mouseenter)="showPopup('LadleDetails',$event)"></dx-button>
+    <dx-button [icon]="svgSecondIcon" (mouseleave)="hidePopup()"
+      (mouseenter)="showPopup('LifeDetails',$event)"></dx-button>
+    <dx-button [icon]="svgThirsIcon"></dx-button>
+    <dx-button [icon]="svgFourthIcong" (mouseleave)="hidePopup()"
+      (mouseenter)="showPopup('MovementDetails',$event)"></dx-button>
+  </div>
+  <dx-popover [(visible)]="isPopOverVisible" [target]="popoverTargetElement" [width]="600" [height]="400"
+    [showTitle]="true" [title]="currentType" [closeOnOutsideClick]="true">
+    <dxo-position [at]="'right top'" [my]="'left top'" [offset]="{x:10,y:0}">
+
+    </dxo-position>
+    <div *ngIf="currentType === 'LadleDetails'">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <strong>Ladle ID:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.ladleId }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Operation ID:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.operationId }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Grade:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.grade }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Ladle Type:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.ladleType }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Last Unit:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.lastUnit }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>TDC:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.TDC }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Capacity:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.capacity }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Quantity:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.quantity }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Sch ID:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.schId }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Ladle Temp:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.ladleTemp }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Torpedo ID:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.torpedoId }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Cast Number:</strong>
+          <div class="detail-box">{{ laddels.ladleDetails.castNumber }}</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="currentType === 'LifeDetails'">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <strong>Current Campaign Id:</strong>
+          <div class="detail-box">{{ laddels.lifeDetails.currentCampaignId }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Total Cycle Time:</strong>
+          <div class="detail-box">{{ laddels.lifeDetails.totalCycleTime }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>campaign Count:</strong>
+          <div class="detail-box">{{ laddels.lifeDetails.campaignCount }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>Average Cycle Time</strong>
+          <div class="detail-box">{{ laddels.lifeDetails.avgCycleTime }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>operation Heat/Count:</strong>
+          <div class="detail-box">{{ laddels.lifeDetails.operationHeatCount }}</div>
+        </div>
+        <div class="detail-item">
+          <strong>runCount:</strong>
+          <div class="detail-box">{{ laddels.lifeDetails.runCount }}</div>
+        </div>
+
+      </div>
+
+    </div>
+    <div *ngIf="currentType === 'MovementDetails'">
+      <dx-data-grid [dataSource]="movementDetails" [showBorders]="true">
+        <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+        <dxi-column dataField="currentRunID" caption="Current Run ID"></dxi-column>
+        <dxi-column dataField="productionLineUnit" caption="Production Line Unit"></dxi-column>
+        <dxi-column dataField="receivingDate" caption="Receiving Date" dataType="date"></dxi-column>
+        <dxi-column dataField="dispatchDate" caption="Dispatch Date" dataType="date"></dxi-column>
+        <dxi-column dataField="nextPLUnit" caption="Next PL Unit"></dxi-column>
+      </dx-data-grid>
+    </div>
+  </dx-popover>
+
+  <!-- <dx-popover
+    [(visible)]="isPopOverVisible"
+    [target]="popoverTargetElement"
+    [width]="600"
+    [height]="400"
+    title="popoverTitle"
+    [closeOnOutsideClick]="true">
+    <dxo-position
+      [at]="'right top'"
+      [my]="'left top'"
+      [offset]="{ x: 10, y: 0 }">
+    </dxo-position>
+    <div>
+      <div *ngIf="currentType === 'LadleDetails'">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <strong>Ladle ID:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.ladleId }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Operation ID:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.operationId }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Grade:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.grade }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Ladle Type:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.ladleType }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Last Unit:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.lastUnit }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>TDC:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.TDC }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Capacity:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.capacity }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Quantity:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.quantity }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Sch ID:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.schId }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Ladle Temp:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.ladleTemp }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Torpedo ID:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.torpedoId }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Cast Number:</strong>
+            <div class="detail-box">{{ laddels.ladleDetails.castNumber }}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="currentType === 'LifeDetails'">
+        <div class="detail-grid">
+          <div class="detail-item">
+            <strong>Current Campaign ID:</strong>
+            <div class="detail-box">{{ laddels.lifeDetails.currentCampaignId }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Total Cycle Time:</strong>
+            <div class="detail-box">{{ laddels.lifeDetails.totalCycleTime }} hrs</div>
+          </div>
+          <div class="detail-item">
+            <strong>Campaign Count:</strong>
+            <div class="detail-box">{{ laddels.lifeDetails.campaignCount }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Average Cycle Time:</strong>
+            <div class="detail-box">{{ laddels.lifeDetails.avgCycleTime }} hrs</div>
+          </div>
+          <div class="detail-item">
+            <strong>Operation Heat Count:</strong>
+            <div class="detail-box">{{ laddels.lifeDetails.operationHeatCount }}</div>
+          </div>
+          <div class="detail-item">
+            <strong>Run Count:</strong>
+            <div class="detail-box">{{ laddels.lifeDetails.runCount }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="currentType === 'MovementDetails'">
+        <dx-data-grid
+          [dataSource]="movementDetails"
+          [showBorders]="true">
+          <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+          <dxi-column dataField="currentRunID" caption="Current Run ID"></dxi-column>
+          <dxi-column dataField="productionLineUnit" caption="Production Line Unit"></dxi-column>
+          <dxi-column dataField="receivingDate" caption="Receiving Date" dataType="date"></dxi-column>
+          <dxi-column dataField="dispatchDate" caption="Dispatch Date" dataType="date"></dxi-column>
+          <dxi-column dataField="nextPLUnit" caption="Next PL Unit"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+  </dx-popover> -->
+</div>

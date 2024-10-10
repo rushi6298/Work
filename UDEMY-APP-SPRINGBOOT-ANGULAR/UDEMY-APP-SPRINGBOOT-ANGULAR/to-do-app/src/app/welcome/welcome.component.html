@@ -1,0 +1,18 @@
+<div class="container mt-5 text-center">
+    <h2 class="text-success mb-3">Hey!!!! {{ name }}....</h2>
+    <h3 class="text-muted">{{ message }}</h3>
+    <p class="mt-4">You can directly manage your todos by clicking below</p>
+    <a routerLink="/todos" class="btn btn-primary mt-3">Manage Todos</a>
+</div>
+
+<div class="container mt-5">
+    <h4>Click here to get a customized welcome message</h4>
+    <button (click)="getWelcomeMessageWithPath()" class="btn btn-success">Get Welcome</button>
+</div>
+
+<div class="container mt-4" *ngIf="welcomeMessageFromService">
+    <hr> <!-- Adding a horizontal line for separation -->
+
+    <h3>Your Customized Welcome Message</h3>
+    <p>{{ welcomeMessageFromService }}</p>
+</div>

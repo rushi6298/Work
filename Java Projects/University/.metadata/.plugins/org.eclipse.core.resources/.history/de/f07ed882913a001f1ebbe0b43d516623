@@ -1,0 +1,47 @@
+package com.task1.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.task1.demo.entity.Employee;
+import com.task1.demo.repository.EmployeeRepository;
+
+@Service
+
+public class EmployeeServiceImplementation implements EmployeeServiceInterface {
+@Override
+
+	@Autowired
+	private EmployeeRepository repo;
+
+	@Override
+	public List<Employee> getAll() {
+		List<Employee> list = repo.findAll();
+
+		return list;
+	}
+
+	@Override
+	public Employee getById(Integer id) {
+		Optional<Employee> emp = repo.findById(id);
+		if (emp.isPresent()) {
+			return emp.get();
+		} else
+			return null;
+
+	}
+
+	@Override
+	public Employee getByname(String name) {
+		return repo.getByname(name);
+
+	}
+	public Employee getByDept(String department) {
+		
+		return List<Employee>repo.getByDept(department);
+	}
+
+}

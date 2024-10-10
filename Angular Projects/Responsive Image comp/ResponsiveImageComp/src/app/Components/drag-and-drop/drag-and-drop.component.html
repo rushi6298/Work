@@ -1,0 +1,13 @@
+<div class="container">
+    <h3>Image Gallary(Drag any Image)</h3>
+    <div cdkDropList class="image-container" (cdkDropListDropped)="drop($event)">
+        <img *ngFor="let image of images" [src]="image" cdkDrag class="draggable-image"/>
+
+    </div>
+    <h3>Drop Area (Drop one image here)</h3>
+    <div cdkDropList class="drop-area" (cdkDropListDropped)="drop($event)">
+        <img  *ngIf="droppedImage" [src]="droppedImage" class="dropped-image"/>
+
+    </div>
+
+</div>

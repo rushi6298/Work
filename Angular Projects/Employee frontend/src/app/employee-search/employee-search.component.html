@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <form class="mb-4">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="employeeName" class="form-label">Name:</label>
+        <select class="form-select" name="sname" [(ngModel)]="sname">
+          <option value="select">Select Name</option>
+          <option *ngFor="let e of employees" [value]="e.name">{{ e.name }}</option>
+        </select>
+
+        <label for="employeeName" class="form-label mt-3">Department:</label>
+        <select class="form-select" name="sdepartment" [(ngModel)]="sdepartment">
+          <option value="select">Select Department</option>
+          <option *ngFor="let e of employees" [value]="e.department">{{ e.department }}</option>
+        </select>
+
+       
+      
+        
+      </div>
+      <div class="col-md-6 align-self-end mb-3">
+        <button class="btn btn-primary btn-lg" (click)="retirveByNameAndDept(sname, sdepartment)">
+          <i class="bi bi-search me-2"></i> Search
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <h1 class="mb-4">Employee Data</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of employees1">
+          <td>{{ e.id }}</td>
+          <td>{{ e.name }}</td>
+          <td>{{ e.department }}</td>
+          <td>{{ e.address }}</td>
+          <td>{{ e.salary }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+s

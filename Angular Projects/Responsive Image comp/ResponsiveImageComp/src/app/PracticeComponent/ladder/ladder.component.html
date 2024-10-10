@@ -1,0 +1,55 @@
+<div class="container">
+  <!-- Left half for displaying ladles in a 2x2 grid -->
+  <div class="left-half">
+    <div class="image-grid">
+      <div *ngFor="let ladle of ladderData" class="image-item" (click)="selectedLaddel(ladle)">
+        <app-main-ladder [laddels]="ladle" [ngStyle]="{ 'width': '250px', 'height': '290px' }"></app-main-ladder>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right half for displaying ladle details -->
+  <div class="right-half">
+    <div *ngIf="selectedLaddel" class="element-details">
+      
+      <div style="display: flex; align-items: center;">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 300px; margin-right: 15px;">
+          <span>100%</span>
+          <span>75%</span>
+          <span>50%</span>
+          <span>25%</span>
+          <span>0%</span>
+        </div>
+        <svg width="100%" height="300px">
+          <rect 
+            x="20" 
+            class="animated-rect"
+            [attr.y]="300 - (300 * getFillHeight(selectLaddel.weight) / 100)"
+            [attr.height]="getFillHeight(selectLaddel.weight) + '%'" 
+            fill="red"
+            width="20px" 
+            style="transition: height 1s ease, y 1s ease;">
+          </rect>
+        </svg>
+      </div>
+      <div>
+        <h2>Ladle Details</h2>
+        <div class="detail-item">
+          <span class="detail-label">Ladle ID:</span> {{ selectLaddel.ladleId }}
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Ladle Heat ID:</span> {{ selectLaddel.heatId }}
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Ladle Location:</span> {{ selectLaddel.location }}
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Ladle Temperature:</span> {{ selectLaddel.temperature }}
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Ladle Weight:</span> {{ selectLaddel.weight }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

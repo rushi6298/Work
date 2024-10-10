@@ -1,0 +1,103 @@
+
+<!-- <div>
+    <label>X-DIRECTION</label>
+    <input type="number" [(ngModel)]="xCordinate" placeholder="X direcxtion" (ngModelChange)=" updatePosition2()">
+
+    <label>Y-DIRECTION</label>
+    <input type="number" [(ngModel)]="yCordinate" placeholder="y direcxtion" (ngModelChange)=" updatePosition2()">
+
+    <label>Custom Height</label>
+    <input type="number" [(ngModel)]="customeHeight" placeholder="Custom Height" (ngModelChange)=" updatePosition2()">
+
+    <label>Custome Width</label>
+    <input type="number" [(ngModel)]="customeWidth" placeholder="Custom Width" (ngModelChange)=" updatePosition2()">
+    
+</div> -->
+<div class="control-panel">
+    <!-- Existing Controls -->
+    
+    <div class="control-group">
+      <label for="origin">Origin</label>
+      <select id="origin" [(ngModel)]="selectedOrigine" (ngModelChange)="updatePosition2()">
+        <option value="top-left">Origin at Top Left</option>
+        <option value="top-right">Origin at Top Right</option>
+        <option value="bottom-left">Origin at Bottom Left</option>
+        <option value="bottom-right">Origin at Bottom Right</option>
+        <option value="middle">Origin at Middle</option>
+      </select>
+    </div>
+  </div>
+
+<div class="control-panel">
+    <div class="control-group">
+      <label for="x-direction">X-DIRECTION</label>
+      <input
+        id="x-direction"
+        type="number"
+        [(ngModel)]="xCordinate"
+        placeholder="X direction"
+        (ngModelChange)="updatePosition2()"
+      />
+    </div>
+  
+    <div class="control-group">
+      <label for="y-direction">Y-DIRECTION</label>
+      <input
+        id="y-direction"
+        type="number"
+        [(ngModel)]="yCordinate"
+        placeholder="Y direction"
+        (ngModelChange)="updatePosition2()"
+      />
+    </div>
+  
+    <div class="control-group">
+        <label for="custom-width">Custom Width</label>
+        <input
+          id="custom-width"
+          type="number"
+          [(ngModel)]="customeWidth"
+          placeholder="Custom Width"
+          (ngModelChange)="updatePosition2()"
+        />
+      </div>
+    <div class="control-group">
+      <label for="custom-height">Custom Height</label>
+      <input
+        id="custom-height"
+        type="number"
+        [(ngModel)]="customeHeight"
+        placeholder="Custom Height"
+        (ngModelChange)="updatePosition2()"
+      />
+    </div>
+  
+   
+  </div>
+  
+  <div class="image-info">
+    <p class="info-item">
+      <strong>Original Image Height:</strong> {{ actualImageHeight }}  px
+    </p>
+    <p class="info-item">
+      <strong>Original Image Width:</strong> {{ actualImageWidth }} px
+    </p>
+  </div>
+  
+<div class="background-image-div">
+
+   
+
+<img #backgroundImage src="assets/Tata-Steel3.jpg" alt="Background" />
+<div #circleBall class="circle-ball">
+        <span #circleText class="circle-text">Hi</span>
+    </div>
+<div #circleBall2 class="circle-ball2">
+    <span #circleText2 class="circle-text2">Steady</span>
+</div>
+</div>
+<!-- <div>
+    <label for="circleYPosition">Circle Y Position:</label>
+    <input id="circleYPosition" type="number" [(ngModel)]="circleYPosition" (ngModelChange)="updateCirclePosition()" />
+  </div> -->
+

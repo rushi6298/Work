@@ -1,0 +1,224 @@
+<!-- <div class="container">
+    <div style="margin-bottom: 20px;">
+      <label>Select University Address</label>
+      <dx-autocomplete  [(value)]="selectedAddress" [dataSource]="universityAdresses" displayExpr="this" valueExpr="this"
+        [minSearchLength]="1" [maxItemCount]="10"
+        
+        >
+      </dx-autocomplete>
+  
+      <div class="custom-datetime-inputs">
+        <div class="custom-input-wrapper">
+          <label for="start-time">Start Time</label>
+          <input class="custom-input" type="datetime-local" id="start-time" name="Start Time" [(ngModel)]="selectedStartTime">
+        </div>
+        <div class="custom-input-wrapper">
+          <label for="end-time">End Time</label>
+          <input class="custom-input" type="datetime-local" id="end-time" name="End Time" [(ngModel)]="selectedEndTime">
+        </div>
+      </div>
+  
+      <dx-button text="Search" (onClick)="onSearch($event)" stylingMode="contained">
+      </dx-button>
+    </div>
+  
+    <div style="margin-bottom: 30px;">
+        <div class="search-filters">
+            <input type="text" [(ngModel)]="filters.uname" (input)="onSearchTermChange()" placeholder="Search by Name" />
+            <input type="text" [(ngModel)]="filters.uaddress" (input)="onSearchTermChange()" placeholder="Search by Address" />
+            <input type="text" [(ngModel)]="filters.email" (input)="onSearchTermChange()" placeholder="Search by Email" />
+            <input type="text" [(ngModel)]="filters.phonenumber" (input)="onSearchTermChange()" placeholder="Search by Phone Number" />
+            <input type="text" [(ngModel)]="filters.universityType" (input)="onSearchTermChange()" placeholder="Search by Type" />
+            <input type="text" [(ngModel)]="filters.foundedYear" (input)="onSearchTermChange()" placeholder="Search by Founded Year" />
+          </div>
+      <h2>Universities</h2>
+      <dx-data-grid #universityGrid [dataSource]="universities" (onRowClick)="onUniversityRowClick($event)"
+        (onRowInserted)="saveUnivesity($event)" (onRowUpdated)="updateUniversities($event)"
+        (onRowRemoved)="deleteUniversity($event)" [showBorders]="true" [rowAlternationEnabled]="true"
+        [paging]="{ pageSize: 3 }" [pager]="{ showPageSizeSelector: true, allowedPageSizes: [3, 10], showInfo: true }">
+  
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+  
+        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+        </dxo-editing>
+  
+        <dxi-column dataField="uid" caption="University ID" [allowEditing]="false" [alignment]="'center'">
+        </dxi-column>
+        <dxi-column dataField="uname" caption="University Name" [width]="400">
+        
+        </dxi-column>
+        <dxi-column dataField="uaddress" caption="University Address">
+         
+        </dxi-column>
+        <dxi-column dataField="email" caption="University Email">
+          
+        </dxi-column>
+        <dxi-column dataField="phonenumber" caption="University Phone Number">
+       
+        </dxi-column>
+        <dxi-column dataField="lastUpdatedOn" caption="Last Updated" [allowEditing]="false"
+          [editorOptions]="{ disabled: true }">
+        </dxi-column>
+  
+        <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+      </dx-data-grid>
+    </div>
+  
+    <div>
+      <h2>College Data</h2>
+      <dx-data-grid [dataSource]="colleges" keyExpr="cid" [allowColumnReordering]="true" [showBorders]="true"
+        [allowColumnResizing]="true" [rowAlternationEnabled]="true" (onRowInserted)="saveCollege($event)"
+        (onRowUpdated)="updateCollege($event)" (onRowRemoved)="deleteCollege($event)" [paging]="{ pageSize: 3 }"
+        [pager]="{ showPageSizeSelector: true, allowedPageSizes: [3, 10], showInfo: true }">
+  
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+  
+        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+        </dxo-editing>
+        <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+  
+        <dxi-column dataField="cid" caption="CID" [width]="100" [allowEditing]="false" [alignment]="'center'">
+        </dxi-column>
+        <dxi-column dataField="cname" caption="College Name" [width]="400">
+      
+        </dxi-column>
+        <dxi-column dataField="caddress" caption="College Address" [width]="100">
+         
+        </dxi-column>
+        <dxi-column dataField="email" caption="College Email" [width]="150">
+       
+        </dxi-column>
+        <dxi-column dataField="phonenumber" caption="College Phone Number" [width]="130">
+        
+        </dxi-column>
+        <dxi-column dataField="rating" caption="College Ratings" [width]="60" [lookup]="{ dataSource: allRatings }">
+         
+        </dxi-column>
+      </dx-data-grid>
+    </div>
+  </div> -->
+
+
+
+
+  
+<div class="card-body" style="padding-top: 50px;">
+  <dx-tab-panel [(selectedIndex)]="selectedIndex">
+      <dxi-item title="University">
+          <div class="container">
+              <div style="margin-bottom: 20px;">
+                  <dx-autocomplete [(value)]="selectedAddress" [dataSource]="universityAdresses" displayExpr="this"
+                      valueExpr="this" [minSearchLength]="1" [maxItemCount]="10" placeholder="Type to search University Addresses">
+                  </dx-autocomplete>
+
+                  <dx-button text="Search" (onClick) ="onSearchColumnWise()" stylingMode="contained">
+                  </dx-button>
+                  <!-- <input type="text" [(ngModel)]="searchIn" >
+                  <button (click)="searchInWithPagination()">SearchIn</button> -->
+              </div >
+              
+              <div class="container " >
+                <dx-button text="Excel Data In EXCEL" (onClick) ="exportGridToExcel()" stylingMode="contained">
+                </dx-button>
+              </div>
+<!--               
+              <div>
+                
+              
+              <input type="text" [(ngModel)]="selectedNameFilter" placeholder="Enter The name" (ngModelChange)="onSearchColumnWise()">
+              
+              
+              <input type="text" [(ngModel)]="selectedAddressFilter" placeholder="Enter The Address" (ngModelChange)="onSearchColumnWise()">
+              
+              
+              <input type="text" [(ngModel)]="selectedEmailFilter" placeholder="Enter The email" (ngModelChange)="onSearchColumnWise()">
+              
+              
+              <input type="text" [(ngModel)]="selectedPhonenumberFilter" placeholder="Enter the phonenumber" (ngModelChange)="onSearchColumnWise()">
+              
+              
+              <input type="datetime-local" [(ngModel)]="selectedLastUpdatedOnFilter" (ngModelChange)="onSearchColumnWise()">
+              </div> 
+              -->
+
+              <div *ngIf="searchMode">
+                <dx-data-grid  #universityGrid  [dataSource]=" universityDataSourceBool ? universitiesDataSource : universities"  (onRowClick)="onUniversityRowClick($event)"
+                  (onRowInserted)="saveUnivesity($event)" (onRowUpdated)="updateUniversities($event)"
+                  (onRowRemoved)="deleteUniversity($event)" [showBorders]="true" [rowAlternationEnabled]="true"
+                  [remoteOperations]="true"
+                  >
+                  <!-- <dxo-search-panel [visible]="true"></dxo-search-panel> -->
+                  <dxo-header-filter  [visible]="true" ></dxo-header-filter>
+                  <dxo-filter-row  [visible]="true" [applyFilter]="false"></dxo-filter-row> 
+                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+                      [useIcons]="true">
+                  </dxo-editing>
+              <br>
+                  <dxi-column dataField="uid" caption="University ID" [allowEditing]="false" [alignment]="'center'"></dxi-column>
+                  
+                  <dxi-column dataField="uname" caption="University Name" [width]="400"  ></dxi-column> 
+                  <dxi-column dataField="uaddress" caption="University Addresses" [width]="130" ></dxi-column> 
+                  <dxi-column dataField="email" caption="University Email" ></dxi-column>
+                  <dxi-column dataField="phonenumber" caption="University Phone Number" ></dxi-column>
+                  <dxi-column dataField="lastUpdatedOn " caption="Last Updated On" ></dxi-column>
+                  <dxo-export [enabled]="true" [allowExportSelectedData]="true"  ></dxo-export>
+                  
+              </dx-data-grid>
+              </div>
+              <!-- <mat-paginator [length]="totalElementsUniversity" [pageSize]="pageSizeUniversity" [pageSizeOptions]="pageSizeArrayUniversity" (page)="pageChangeUniversity($event)">
+
+              </mat-paginator> -->
+             
+              
+          </div>
+      </dxi-item>
+
+      <dxi-item title="College">
+          <h2>College Data</h2>
+          <dx-data-grid [dataSource]="colleges" keyExpr="cid" [allowColumnReordering]="true" [showBorders]="true"
+              [allowColumnResizing]="true" [rowAlternationEnabled]="true" (onRowInserted)="saveCollege($event)"
+              (onRowUpdated)="updateCollege($event)" (onRowRemoved)="deleteCollege($event)"
+              >
+              <dxo-search-panel [visible]="true"></dxo-search-panel>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-filter-row [visible]="true"></dxo-filter-row> 
+              <!-- <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input matInput(inpput)="applyFilter($event.target.value)" placeholder="Search">
+              </mat-form-field> -->
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+                  [useIcons]="true">
+              </dxo-editing>
+              <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+              <dxi-column dataField="cid" caption="CID" [width]="100" [allowEditing]="false" [alignment]="'center'"></dxi-column>
+              <dxi-column dataField="cname" caption="College Name" [width]="400">
+                  <dxi-validation-rule type="required" message="Please Enter Valid the Name"></dxi-validation-rule>
+                  <dxi-validation-rule type="pattern" pattern="^[A-Za-z\s]+$" message="Please enter valid Name ">
+                  </dxi-validation-rule>
+              </dxi-column>
+              <dxi-column dataField="caddress" caption="College Address" [width]="100">
+                  <dxi-validation-rule type="required" message="Please Enter the Address"></dxi-validation-rule>
+              </dxi-column>
+              <dxi-column dataField="email" caption="College Email" [width]="150">
+                  <dxi-validation-rule type="required" type="email" message="Please Enter the valid email">
+                  </dxi-validation-rule>
+              </dxi-column>
+              <dxi-column dataField="phonenumber" caption="College Phone Number" [width]="130">
+                  <dxi-validation-rule type="required" message="Please Enter the phonenumber"></dxi-validation-rule>
+                  <dxi-validation-rule type="pattern" pattern="[0-9-]+$" message="Please enter valid Phone number ">
+                  </dxi-validation-rule>
+              </dxi-column>
+              <dxi-column dataField="rating" caption="College Ratings" [width]="60"
+                  [lookup]="{dataSource:allRatings}"></dxi-column>
+          </dx-data-grid>
+          <mat-paginator [length]="totalElementsCollege" [pageSize]="pageSizeCollege" [pageSizeOptions]="[3,6,9]" (page)="pageChangeCollege($event)">
+
+          </mat-paginator>
+      </dxi-item>
+  </dx-tab-panel>
+</div> 
+
+
+  

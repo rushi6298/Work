@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "devextreme": "^22.2.13",
+    "devextreme-angular": "^22.2.13"
+  },
+  "devDependencies": {
+    "devextreme-themebuilder": "^24.1.5"
+  }
+}

@@ -1,0 +1,34 @@
+<div class="resizable-container">
+    <svg viewBox="0 0 193 193" preserveAspectRatio="xMidYMid meet" width="100%" height="100%" overflow="hidden">
+      <defs>
+        <mask [attr.id]="maskId">
+          <rect x="0" [attr.y]="calculateYPosition(percent)" width="100%" [attr.height]="percent + '%'" fill="white" />
+        </mask>
+      </defs>
+  
+      <path d="M8.93945 0.484375H119.972L106.641 118.428H22.9873L8.93945 0.484375Z" fill="#808080"/>
+  
+      <path d="M29.5407 106.777L15.8452 1.36245H113.156L100.02 106.775C99.9228 106.789 99.8155 106.805 99.6983 106.822C99.0643 106.914 98.142 107.047 96.9905 107.205C94.6874 107.523 91.4684 107.946 87.806 108.369C80.4715 109.215 71.3945 110.055 64.3334 110.048C57.3365 110.04 48.484 109.2 41.359 108.358C37.8012 107.937 34.6827 107.517 32.454 107.201C31.3397 107.044 30.4481 106.913 29.8354 106.821C29.7286 106.805 29.6302 106.79 29.5407 106.777Z" 
+            fill="#EEEEEE" stroke="#4E4E4E" stroke-width="1.75615"/>
+  
+      <path d="M99.5619 106.607L111.365 8.83594C111.365 8.83594 82.8315 11.699 64.497 11.699C46.1625 11.699 17.6289 8.83594 17.6289 8.83594L29.8896 106.607C29.8896 106.607 50.6563 109.982 64.2912 109.997C78.0502 110.012 99.5619 106.607 99.5619 106.607Z"
+            [attr.fill]="tempColor(laddel.temperature)"
+            [attr.mask]="'url(#' + maskId + ')'"/>
+  
+      <path d="M58.3275 117.826L61.3701 110.527H66.7789L69.7472 117.826H58.3275Z" stroke="#4E4E4E" stroke-width="1.05369"
+            [attr.fill]="tempColor(laddel.temperature)"/>
+      
+      <rect x="27.8398" y="112.781" width="12.0651" height="15.7774" fill="#808080"/>
+      <path d="M6.66406 21.7031H15.0168L17.801 53.4786H6.66406V21.7031Z" fill="#808080"/>
+      <rect x="-0.00390625" y="31.6016" width="15.0181" height="11.9625" fill="#808080"/>
+      <rect x="113.98" y="31.6016" width="15.0181" height="11.9625" fill="#808080"/>
+      <path d="M113.812 21.7031H122.164V53.4786H111.027L113.812 21.7031Z" fill="#808080"/>
+      <rect x="89.0918" y="112.781" width="12.0651" height="15.7774" fill="#808080"/>
+  
+      <text x="33%" y="25" font-size="14" text-anchor="middle" fill="black" font-weight="bold">{{ laddel.laddelId }}</text>
+      <text x="33%" y="40" font-size="10" text-anchor="middle" fill="black" font-weight="bold">{{ laddel.heatId }}</text>
+      <text x="33%" y="55" font-size="10" text-anchor="middle" fill="black" font-weight="bold">{{ laddel.location }}</text>
+      <text x="33%" y="70" font-size="10" text-anchor="middle" fill="black" font-weight="bold">{{ laddel.weight }}</text>
+      <text x="33%" y="82" font-size="10" text-anchor="middle" fill="black" font-weight="bold">{{ laddel.temperature }}</text>
+    </svg>
+  </div>

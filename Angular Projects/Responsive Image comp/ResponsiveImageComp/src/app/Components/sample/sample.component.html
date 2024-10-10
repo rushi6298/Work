@@ -1,0 +1,24 @@
+<div class="pageContainer">
+    <div class="row g-0 bg-white p-2 mb-3">
+        <div class="col">
+            <div class="devExContainer position-relative dragContainer mb-2">
+                <dx-data-grid [dataSource]="sampleList" [showBorders]="true" [showRowLines]="true"
+                    [columnAutoWidth]="true">
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dxi-column dataField="id" caption="ID" width="20%"></dxi-column>
+                    <dxi-column dataField="type" caption="Type" [allowFiltering]="false"></dxi-column>
+                    <dxi-column dataField="Status" caption="Status" [allowFiltering]="false"></dxi-column>
+                    <dxi-column dataField="createdDate" caption="Created Date" [allowFiltering]="false"></dxi-column>
+                    <dxi-column dataField="analysisDate" caption="Analysis Date" [allowFiltering]="false"></dxi-column>
+                    <dxi-column dataField="productionLine" caption="Production Line" [allowFiltering]="false"></dxi-column>
+                    
+                </dx-data-grid>
+               <div class="button-container">
+                <dx-button>Finalize Sample</dx-button>
+                <dx-button>Generate Steel Sample</dx-button>
+                <dx-button>Generate Slag Sample</dx-button>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

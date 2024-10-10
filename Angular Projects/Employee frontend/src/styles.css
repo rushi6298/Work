@@ -1,0 +1,124 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url(https://unpkg.com/bootstrap@5.3.0/dist/css/bootstrap.min.css);
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-container {
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.custom-card {
+    background-color: #e9ecef;
+    border: 1px solid #343a40;
+}
+
+.custom-card-header {
+    background-color: #343a40;
+    color: white;
+}
+
+.custom-card-body {
+    background-color: #ffffff;
+}
+
+.custom-select,
+.custom-input {
+    background-color: #ffffff;
+    border: 1px solid #343a40;
+    color: #343a40;
+}
+
+.custom-checkbox,
+.custom-checkbox-label {
+    color: #343a40;
+}
+
+.custom-thead-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+.custom-btn {
+    background-color: #343a40;
+    color: white;
+    border: none;
+}
+
+.custom-btn-fancy {
+    background-color: black;
+    color: white;
+    border: none;
+}
+.custom-employee-data-title {
+    color: #007bff;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.custom-container {
+    margin-top: 20px;
+}
+
+.custom-card-header {
+    background-color: #343a40;
+    color: white;
+}
+
+.custom-card-body {
+    background-color: #f8f9fa;
+}
+
+.custom-btn {
+    width: 100%;
+}
+
+.custom-select, .custom-input {
+    border-radius: 5px;
+}
+
+.custom-table thead {
+    background-color: #343a40;
+    color: white;
+}
+
+.custom-table th, .custom-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.custom-table td input, .custom-table td select {
+    width: 100%;
+}
+
+.btn-group .btn {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-group .btn {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+}
+
+.custom-total-salary {
+    font-weight: bold;
+    font-size: 1.2em; /* Adjust the font size as needed */
+    padding: 10px;
+    background-color: #f8f9fa; /* Light background color */
+    border: 1px solid #dee2e6; /* Light border */
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}

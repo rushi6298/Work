@@ -1,0 +1,14 @@
+<dx-data-grid 
+    [dataSource]="eventsData" 
+    [showBorders]="true"
+    [showRowLines]="true"
+    [columnAutoWidth]="true">
+
+    <dxo-header-filter [visible]="true" ></dxo-header-filter>
+
+    <dxi-column dataField="eventId" caption="Event ID" width="20%" >
+        <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+    </dxi-column>
+    
+    <dxi-column dataField="date" caption="Date"   [allowFiltering]="false"  ><dxo-format type="shortDateShortTime"></dxo-format></dxi-column>
+</dx-data-grid>
