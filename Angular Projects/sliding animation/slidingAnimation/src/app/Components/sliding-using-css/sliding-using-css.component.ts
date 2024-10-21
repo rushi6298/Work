@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sliding-using-css.component.html',
-  styleUrl: './sliding-using-css.component.scss'
+  styleUrl: './sliding-using-css.component.css'
 })
 export class SlidingUsingCssComponent {
   @Input() images : Slide[]=[]

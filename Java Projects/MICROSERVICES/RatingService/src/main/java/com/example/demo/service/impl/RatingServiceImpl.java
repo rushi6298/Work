@@ -40,5 +40,11 @@ public class RatingServiceImpl implements RatingService
 		//return ratingRepo.findById(ratingId).orElseThrow(() -> new ResourceNotFoundException("hotel for given id is not found"));
 		return ratingRepo.findById(ratingId).orElseThrow(()->new com.example.demo.exception.ResourceNotFoundException("rating for given id is not found"));
 	}
+	@Override
+	public Rating updateRating(Rating rating) 
+	{
+		
+		return null;
+	}
 
 }

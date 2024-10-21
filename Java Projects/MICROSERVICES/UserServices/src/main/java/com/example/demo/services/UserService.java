@@ -12,5 +12,6 @@ public interface UserService
 	
 	public User getByUserId(String userId);
 	
+	public User updateUser(User user);
 
 }
