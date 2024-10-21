@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,6 +85,23 @@ public class UserController {
 	{
 		 List<User> users= userService.getAllUser();
 		return ResponseEntity.ok(users);
+	}
+	
+	@PutMapping("/{userId}")
+	public ResponseEntity<User> updateUser(@PathVariable String userId, @RequestBody User user) {
+		System.err.println("Clients user Id is : "+userId);
+	    // Ensure the userId from the URL matches the userId in the user object
+		System.err.println("Required user Id is : "+user.getUserId());
+	    if (!userId.equals(user.getUserId())) {
+	        throw new IllegalArgumentException("User ID in the path and request body do not match");
+	    }
+	    
+	    
+	    // Update the user
+	    User updatedUser = userService.updateUser(user);
+	    
+	    // Return the updated user with 200 OK status
+	    return ResponseEntity.ok(updatedUser);
 	}
 	
 	

@@ -19,6 +19,8 @@ public interface RatingService
 	
 	public Rating getRatingsByRatingId(String ratingId);
 	
+	public Rating updateRating(Rating rating);
+	
 	
 	
 	

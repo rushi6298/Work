@@ -9,5 +9,5 @@ public interface HotelService
 	public Hotel createHotel(Hotel hotel);
 	public Hotel getSingleHotel(String id);
 	public List<Hotel> getAll();
-
+	public Hotel updateHotel(Hotel hotel);
 }

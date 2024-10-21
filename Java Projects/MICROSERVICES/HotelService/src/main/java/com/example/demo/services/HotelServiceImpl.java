@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,24 @@ public class HotelServiceImpl implements HotelService
 	public Hotel getSingleHotel(String id) {
 		
 		return hotelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("hotel for given id is not found"));
+	}
+	
+	@Override
+	public Hotel updateHotel(Hotel hotel) {
+		Optional<Hotel> exstingHotel = hotelRepository.findById(hotel.getId());
+		Hotel existingHotelPerticular;
+		if(exstingHotel.isPresent())
+		{
+			existingHotelPerticular = exstingHotel.get();
+			existingHotelPerticular.setAbout(hotel.getAbout());
+			existingHotelPerticular.setName(hotel.getName());
+			existingHotelPerticular.setLocation(hotel.getLocation());
+			return hotelRepository.save(existingHotelPerticular);
+			
+		}
+		return null;
+		
+	
 	}
 
 }

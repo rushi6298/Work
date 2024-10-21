@@ -35,25 +35,40 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private HotelService hotelService;
+	
+	
+	
 
 	
+	
+
+
+	
+	
+//	get all users with ratings and hotels
 	@Override
 	public List<User> getAllUser() {
-		// IMPLEMENTING RATING SERVICE CALL USING REST TEMPLATE
+		List<User>users=repo.findAll();
+		users.forEach(user->{
+//			getting all ratings of single user
+			Rating[] userRatings = restTemplate.getForObject("http://RATING-SERVICE/ratings/users/" + user.getUserId(),
+					Rating[].class);
+			List<Rating> ratingList = Arrays.stream(userRatings).toList();
+			
+//			for each rating fetching the hotel using feign client
+			ratingList.forEach(rating->{
+				Hotel hotel =hotelService.getHotel(rating.getHotelId());
+				rating.setHotel(hotel);
+			});
+			// Set the list of ratings (with hotel details) for the user
+	        user.setRatings(ratingList);
+			});
+		
+		return users;
+		 
 
-		return repo.findAll();
+		
 	}
-//	@Override
-//	public User getByUserId(String userId) {
-//		// TODO Auto-generated method stub
-//		Optional<User> user = repo.findById(userId);
-//		if(user.isEmpty())
-//		{
-//			return null;
-//		}
-//		return user.get() ;
-//	}
-
 	@Override
 	public User getByUserId(String userId) {
 		User user = repo.findById(userId).orElseThrow(() -> new ResourceNotFoundException(
@@ -94,6 +109,25 @@ public class UserServiceImpl implements UserService {
 		String randomUserId = UUID.randomUUID().toString();
 		user.setUserId(randomUserId);
 		return repo.save(user);
+	}
+	
+	
+	@Override
+	public User updateUser(User user) {
+		
+		// finding existing user 
+		User exsistingUser = repo.findById(user.getUserId()).orElseThrow(()->
+			new ResourceNotFoundException("User Not Found With ID "+ user.getUserId())
+		);
+		// updating exsiting user's field with the new values 
+		exsistingUser.setName(user.getName());
+		exsistingUser.setEmail(user.getEmail());
+		exsistingUser.setRatings(user.getRatings()); 
+		exsistingUser.setAbout(user.getAbout()); 
+		return repo.save(exsistingUser); 
+		
+				
+		
 	}
 
 }

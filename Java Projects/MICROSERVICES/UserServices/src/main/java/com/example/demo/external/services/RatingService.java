@@ -1,5 +1,6 @@
 package com.example.demo.external.services;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -17,11 +18,13 @@ import com.example.demo.entites.Rating;
 public interface RatingService {
 	
 	// get 
-	 
+	 @GetMapping
+	 public List<Rating> getAllRatings();
 	
 	// post
 	@PostMapping("/ratings")
 	public Rating createRating( Rating values);
+	
 	
 	// put
 	@PutMapping("/ratings/{ratingId}")
